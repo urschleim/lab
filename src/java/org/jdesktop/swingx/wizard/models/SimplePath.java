@@ -1,0 +1,87 @@
+/**
+ * Wizard Framework
+ * Copyright 2004 - 2005 Andrew Pietsch
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * $Id: SimplePath.java 1018 2015-08-03 19:04:22Z Michael $
+ */
+
+package org.jdesktop.swingx.wizard.models;
+
+import org.jdesktop.swingx.wizard.WizardStep;
+
+/**
+ * A SimplePath represents a sequence of {@link WizardStep wizard steps} whose next path is determined
+ * at compile time.  That is, SimplePaths can't branch.
+ * @see #setNextPath
+ * @see #addStep
+ */
+public class
+SimplePath
+extends Path
+{
+   private Path nextPath;
+
+   public
+   SimplePath()
+   {
+   }
+
+   /**
+    * Creates a new SimplePath that is initialized with the specified step.
+    * @param step the first step of the path.
+    */
+   public
+   SimplePath(WizardStep step)
+   {
+      addStep(step);
+   }
+
+   @Override
+protected Path
+   getNextPath(MultiPathModel model)
+   {
+      return nextPath;
+   }
+
+   public Path
+   getNextPath()
+   {
+      return nextPath;
+   }
+
+   public void
+   setNextPath(Path nextPath)
+   {
+      this.nextPath = nextPath;
+   }
+
+   @Override
+public void
+   acceptVisitor(PathVisitor visitor)
+   {
+      visitor.visitPath(this);
+   }
+
+   public void
+   visitNextPath(PathVisitor visitor)
+   {
+      if (nextPath != null)
+         nextPath.acceptVisitor(visitor);
+   }
+
+
+}
