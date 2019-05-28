@@ -3,12 +3,12 @@
  */
 module framework.laboratory {
 	requires java.xml.ws;
-	requires java.jnlp;
 	requires java.logging;
 	requires java.prefs;
 	requires javafx.base;
 	requires javafx.controls;
     requires javafx.media;
+    requires javafx.swing;
 
     requires framework.smack;
     requires javafx.fxml;
