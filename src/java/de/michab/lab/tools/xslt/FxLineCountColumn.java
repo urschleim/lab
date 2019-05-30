@@ -17,7 +17,7 @@ import javafx.scene.control.TextArea;
 /**
  * A single column component only displaying line numbers.
  *
- * @version $Rev$
+ * @version $Id$
  * @author Michael
  */
 class FxLineCountColumn extends TextArea

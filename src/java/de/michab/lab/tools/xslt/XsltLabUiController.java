@@ -98,6 +98,8 @@ public class XsltLabUiController
                 _textAreaResult.textProperty(),
                 PropertyLink.STRING_STRING_CONVERTER,
                 "_textAreaResult" );
+
+        _textAreaXml.setDndEnabled( true );
     }
 
     private void statusMessage( String format, Object ... args )

@@ -97,4 +97,16 @@ public class FxLineNumberTextArea extends HBox
     {
         return textProperty;
     }
+
+    /**
+     * Enable drag and drop.
+     * @param what True enables dnd.
+     */
+    public void setDndEnabled( boolean what )
+    {
+        if ( what )
+            DragManager.attachTo( _master );
+        else
+            DragManager.detachFrom( _master );
+    }
 }
