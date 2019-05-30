@@ -6,14 +6,43 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.michab.lab.tools.xslt.XsltLabUiController">
    <center>
       <SplitPane dividerPositions="0.33, 0.66">
         <items>
-            <StackPane fx:id="_xsltParent" prefHeight="150.0" prefWidth="200.0" />
-            <StackPane fx:id="_xmlParent" prefHeight="150.0" prefWidth="200.0" />
-            <StackPane fx:id="_resultParent" prefHeight="150.0" prefWidth="200.0" />
+            <VBox>
+               <children>
+                  <Label text="XML to transform">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="_xmlParent" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label text="XSLT transformation">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="_xsltParent" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label text="Transformation result">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="_resultParent" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
         </items>
       </SplitPane>
    </center>
