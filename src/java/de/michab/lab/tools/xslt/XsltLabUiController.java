@@ -72,8 +72,8 @@ public class XsltLabUiController
 
     private FxLineNumberTextArea _textAreaXsl =
             new FxLineNumberTextArea();
-    private FxLineNumberTextArea _textAreaXml =
-            new FxLineNumberTextArea();
+    private LargeTextView _textAreaXml =
+            new LargeTextView();
     private FxLineNumberTextArea _textAreaResult =
             new FxLineNumberTextArea();
 
