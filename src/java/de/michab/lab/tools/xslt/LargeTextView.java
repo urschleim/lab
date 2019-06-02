@@ -12,16 +12,16 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
 /**
  *
  * @author Michael Binz
  */
-public class LargeTextView extends HBox
+public class LargeTextView extends StackPane
 {
     public final StringProperty textProperty =
-            new SimpleStringProperty( new TextArea(), "text", StringUtil.EMPTY_STRING );
+            new SimpleStringProperty( this, "text", StringUtil.EMPTY_STRING );
 
     private final ListView<String> _listView =
             new ListView<>();
