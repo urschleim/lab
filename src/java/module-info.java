@@ -12,6 +12,7 @@ module framework.laboratory {
 
     requires framework.smack;
     requires javafx.fxml;
+    requires java.desktop;
 
     opens de.michab.lab.tools.xslt.resources
         to framework.smack;
