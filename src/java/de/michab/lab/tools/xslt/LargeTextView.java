@@ -10,8 +10,11 @@ import org.jdesktop.util.StringUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.Clipboard;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -26,16 +29,50 @@ public class LargeTextView extends StackPane
     private final ListView<String> _listView =
             new ListView<>();
 
+    private MenuItem _paste =
+            new MenuItem( "Paste ..." );
+    private ContextMenu _contextMenu =
+            new ContextMenu( _paste );
+
     public LargeTextView()
     {
         this( StringUtil.EMPTY_STRING );
     }
     public LargeTextView( String text )
     {
+        // Wiring the listeners.
+        _listView.setOnContextMenuRequested(
+                (s) -> contextMenuListener() );
+        _paste.setOnAction(
+                (s) -> pasteContextMenuListener() );
         textProperty.addListener(
                 (a,b,c) -> textChangeListener(c) );
+        // Wiring the components.
+        _listView.contextMenuProperty().set(
+                _contextMenu );
+        getChildren().add(
+                _listView );
+    }
 
-        getChildren().add( _listView );
+    private void contextMenuListener()
+    {
+        Clipboard cc =
+                Clipboard.getSystemClipboard();
+
+        System.err.println( "hasString: " + cc.hasString() );
+
+        _paste.setDisable(
+                ! cc.hasString() );
+    }
+
+    private void pasteContextMenuListener()
+    {
+        Clipboard cc =
+                Clipboard.getSystemClipboard();
+        if ( ! cc.hasString() )
+            return;
+        textProperty.set(
+                cc.getString() );
     }
 
     private void textChangeListener( String text )

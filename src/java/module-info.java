@@ -2,17 +2,16 @@
  * $Id: module-info.java 407 2018-12-19 15:20:09Z michab66 $
  */
 module framework.laboratory {
-	requires java.xml.ws;
+    requires java.desktop;
 	requires java.logging;
 	requires java.prefs;
 	requires javafx.base;
 	requires javafx.controls;
+	requires javafx.fxml;
     requires javafx.media;
     requires javafx.swing;
 
     requires framework.smack;
-    requires javafx.fxml;
-    requires java.desktop;
 
     opens de.michab.lab.tools.xslt.resources
         to framework.smack;
