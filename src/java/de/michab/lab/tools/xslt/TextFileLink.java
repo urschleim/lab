@@ -1,3 +1,8 @@
+/* $Id: FxLineNumberTextArea.java 2152 2019-02-03 19:36:54Z Michael $
+ *
+ * Unpublished work.
+ * Copyright © 2019 Michael G. Binz
+ */
 package de.michab.lab.tools.xslt;
 
 import java.io.File;
@@ -19,6 +24,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
+ * A component that links a file's text content dynamically to a property.
+ * If the file content changes, the property gets updated.
  *
  * @author Michael G. Binz
  */
@@ -36,12 +43,21 @@ public class TextFileLink extends CliApplication
                     "textProperty",
                     StringUtil.EMPTY_STRING );
 
+    /**
+     * Create an instance.
+     */
     public TextFileLink()
     {
         file.addListener(
                 (a,b,c) -> fileListener( c ) );
     }
 
+    /**
+     * Initializes listening on the passed file.
+     *
+     * @param newFile The file to listen on.
+     * @throws IOException Thrown in case of an error.
+     */
     private void fileListenerException( File newFile )
             throws IOException
     {
@@ -69,8 +85,15 @@ public class TextFileLink extends CliApplication
         _thread.start();
     }
 
+    /**
+     * A thread that is responsible for listening to file changes.
+     */
     private InterruptibleThread _thread;
 
+    /**
+     * Listens to file changes, handles exceptions.
+     * @param newFile The file to listen on.
+     */
     private void fileListener( File newFile )
     {
         if ( ! newFile.isAbsolute() )
@@ -87,6 +110,12 @@ public class TextFileLink extends CliApplication
 
     }
 
+    /**
+     * Implements the thread activity on detecting file changes.
+     *
+     * @param path The file name to listen on.
+     * @param watchService A watch service.
+     */
     private void doListen(
             Path path,
             WatchService watchService )
@@ -116,6 +145,12 @@ public class TextFileLink extends CliApplication
         }
     }
 
+    /**
+     * Handles file changes.
+     *
+     * @param file The file that changed, this is the property value.
+     * @param kind The kind of change.
+     */
     private void targetFileChanged(  File file, Kind<?> kind )
     {
         System.out.println(
@@ -140,6 +175,11 @@ public class TextFileLink extends CliApplication
 
     }
 
+    /**
+     * Test operation.
+     * @param f A file to listen
+     * @throws Exception
+     */
     @Command
     protected final void test( File f ) throws Exception
     {
@@ -149,8 +189,9 @@ public class TextFileLink extends CliApplication
     }
 
     /**
+     * Startup.
      *
-     * @param argv
+     * @param argv Command line arguments.
      */
     public static void main( String[] argv )
     {
