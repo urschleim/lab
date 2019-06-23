@@ -1,4 +1,4 @@
-/* $Id: FxLineNumberTextArea.java 2152 2019-02-03 19:36:54Z Michael $
+/* $Id$
  *
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
@@ -20,6 +20,7 @@ import org.jdesktop.application.CliApplication;
 import org.jdesktop.util.InterruptibleThread;
 import org.jdesktop.util.StringUtil;
 
+import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -37,7 +38,7 @@ public class TextFileLink extends CliApplication
                     "file",
                     null );
 
-    public final SimpleStringProperty textProperty =
+    private final SimpleStringProperty textProperty =
             new SimpleStringProperty(
                     this,
                     "textProperty",
@@ -49,7 +50,15 @@ public class TextFileLink extends CliApplication
     public TextFileLink()
     {
         file.addListener(
-                (a,b,c) -> fileListener( c ) );
+                (a,b,c) -> startListen( c ) );
+    }
+
+    /**
+     * @return The link's text property.
+     */
+    public ReadOnlyStringProperty getTextProperty()
+    {
+        return textProperty;
     }
 
     /**
@@ -58,7 +67,7 @@ public class TextFileLink extends CliApplication
      * @param newFile The file to listen on.
      * @throws IOException Thrown in case of an error.
      */
-    private void fileListenerException( File newFile )
+    private void startListenImpl( File newFile )
             throws IOException
     {
         WatchService watchService =
@@ -94,14 +103,18 @@ public class TextFileLink extends CliApplication
      * Listens to file changes, handles exceptions.
      * @param newFile The file to listen on.
      */
-    private void fileListener( File newFile )
+    private void startListen( File newFile )
     {
         if ( ! newFile.isAbsolute() )
             newFile = newFile.getAbsoluteFile();
 
+        targetFileChanged(
+                newFile,
+                StandardWatchEventKinds.ENTRY_CREATE );
+
         try
         {
-            fileListenerException( newFile );
+            startListenImpl( newFile );
         }
         catch (Exception e)
         {

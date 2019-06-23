@@ -1,4 +1,4 @@
-/* $Id: XsltLabUiController.java 2163 2019-02-20 21:15:15Z Michael $
+/* $Id$
  *
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
@@ -48,7 +48,7 @@ public class XsltLabUiController
 
             String line =
                     XmlUtil.transform(
-                            new StringReader( _textAreaXsl.textProperty.get() ),
+                            new StringReader( _textAreaXsl.getText() ),
                             new StringReader( _textAreaXml.textProperty.get() ) );
 
             statusMessage( "Transformation took %s", tp.toString() );
@@ -70,8 +70,8 @@ public class XsltLabUiController
         }
     }
 
-    private FxLineNumberTextArea _textAreaXsl =
-            new FxLineNumberTextArea();
+    private TransformationComponent _textAreaXsl =
+            new TransformationComponent();
     private LargeTextView _textAreaXml =
             new LargeTextView();
     private FxLineNumberTextArea _textAreaResult =
@@ -86,18 +86,15 @@ public class XsltLabUiController
         _resultParent.getChildren().add(
                 _textAreaResult );
 
-        PropertyLink.persist(
-                _textAreaXsl.textProperty(),
-                PropertyLink.STRING_STRING_CONVERTER,
-                "_textAreaXsl");
+        // TODO persist the file name instead of the text content.
+//        PropertyLink.persist(
+//                _textAreaXsl.textProperty(),
+//                PropertyLink.STRING_STRING_CONVERTER,
+//                "_textAreaXsl");
         PropertyLink.persist(
                 _textAreaXml.textProperty(),
                 PropertyLink.STRING_STRING_CONVERTER,
                 "_textAreaXml" );
-        PropertyLink.persist(
-                _textAreaResult.textProperty(),
-                PropertyLink.STRING_STRING_CONVERTER,
-                "_textAreaResult" );
 
         _textAreaXml.setDndEnabled( true );
     }
