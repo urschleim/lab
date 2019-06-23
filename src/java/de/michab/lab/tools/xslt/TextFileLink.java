@@ -38,10 +38,16 @@ public class TextFileLink extends CliApplication
                     "file",
                     null );
 
-    private final SimpleStringProperty textProperty =
+    private final SimpleStringProperty _textProperty =
             new SimpleStringProperty(
                     this,
-                    "textProperty",
+                    "text",
+                    StringUtil.EMPTY_STRING );
+
+    private final SimpleStringProperty _filenameProperty =
+            new SimpleStringProperty(
+                    this,
+                    "filename",
                     StringUtil.EMPTY_STRING );
 
     /**
@@ -50,7 +56,7 @@ public class TextFileLink extends CliApplication
     public TextFileLink()
     {
         file.addListener(
-                (a,b,c) -> startListen( c ) );
+                (a,b,c) -> filePropertyChanged( c ) );
     }
 
     /**
@@ -58,7 +64,15 @@ public class TextFileLink extends CliApplication
      */
     public ReadOnlyStringProperty getTextProperty()
     {
-        return textProperty;
+        return _textProperty;
+    }
+
+    /**
+     * @return The link's text property.
+     */
+    public ReadOnlyStringProperty getFilenameProperty()
+    {
+        return _filenameProperty;
     }
 
     /**
@@ -67,31 +81,25 @@ public class TextFileLink extends CliApplication
      * @param newFile The file to listen on.
      * @throws IOException Thrown in case of an error.
      */
-    private void startListenImpl( File newFile )
+    private InterruptibleThread startListenImpl( File newFile )
             throws IOException
     {
         WatchService watchService =
                 FileSystems.getDefault().newWatchService();
-
         Path path =
                 newFile.toPath();
         Path dir =
                 path.getParent();
-
-        dir.register(
+        dir. register(
                 watchService,
                 StandardWatchEventKinds.ENTRY_MODIFY,
                 StandardWatchEventKinds.ENTRY_CREATE,
                 StandardWatchEventKinds.ENTRY_DELETE );
-
-        if ( _thread != null )
-            _thread.interrupt();
-
-        _thread = new InterruptibleThread(
+        InterruptibleThread result = new InterruptibleThread(
                 () -> doListen( path.getFileName(), watchService ),
                 getClass().getName(),
                 true );
-        _thread.start();
+        return result;
     }
 
     /**
@@ -103,8 +111,20 @@ public class TextFileLink extends CliApplication
      * Listens to file changes, handles exceptions.
      * @param newFile The file to listen on.
      */
-    private void startListen( File newFile )
+    private void filePropertyChanged( File newFile )
     {
+        if ( _thread != null )
+        {
+            _thread.interrupt();
+            _thread = null;
+        }
+
+        if ( newFile == null )
+        {
+            _filenameProperty.set( StringUtil.EMPTY_STRING );
+            return;
+        }
+
         if ( ! newFile.isAbsolute() )
             newFile = newFile.getAbsoluteFile();
 
@@ -112,9 +132,12 @@ public class TextFileLink extends CliApplication
                 newFile,
                 StandardWatchEventKinds.ENTRY_CREATE );
 
+        _filenameProperty.set( newFile.getPath() );
+
         try
         {
-            startListenImpl( newFile );
+            _thread = startListenImpl( newFile );
+            _thread.start();
         }
         catch (Exception e)
         {
@@ -164,26 +187,26 @@ public class TextFileLink extends CliApplication
      * @param file The file that changed, this is the property value.
      * @param kind The kind of change.
      */
-    private void targetFileChanged(  File file, Kind<?> kind )
+    private void targetFileChanged( File file, Kind<?> kind )
     {
         System.out.println(
                 "Event kind:" + kind
-                + ". File affected: " + file + ".");
+                + ". File affected: " + file + ". " + file.length() );
 
         if ( kind == StandardWatchEventKinds.ENTRY_DELETE )
         {
-            textProperty.set( StringUtil.EMPTY_STRING );
+            _textProperty.set( StringUtil.EMPTY_STRING );
             return;
         }
 
         try
         {
             byte[] content = Files.readAllBytes( file.toPath() );
-            textProperty.set( new String( content ) );
+            _textProperty.set( new String( content ) );
         }
         catch ( Exception e )
         {
-            textProperty.set( StringUtil.EMPTY_STRING );
+            _textProperty.set( StringUtil.EMPTY_STRING );
         }
 
     }

@@ -1,16 +1,22 @@
+/* $Id$
+ *
+ * Unpublished work.
+ * Copyright © 2019 Michael G. Binz
+ */
 package de.michab.lab.tools.xslt;
 
 import java.io.File;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 
 /**
  * Holds the necessary wiring for the XSL transformation display.
  *
  * @author Michael Binz
  */
-public class TransformationComponent extends VBox
+public class TransformationComponent extends BorderPane
 {
     private TextFileLink _text =
             new TextFileLink();
@@ -29,28 +35,26 @@ public class TransformationComponent extends VBox
         // cool.
         _textArea.textProperty.bind(
                 _text.getTextProperty() );
-
+        _filename.textProperty().bind(
+                _text.getFilenameProperty() );
         new FileDragManager( this, this::onDrop );
 
-        // lame.
-        _text.file.addListener(
-                (a,b,c) -> listenFileChanged( c ) );
-
         // Populate.
-        getChildren().addAll(
-                _filename,
+        setTop(
+                _filename );
+        setCenter(
                 _textArea );
     }
 
-    private void listenFileChanged( File newFile )
-    {
-        _filename.setText( newFile.getPath() );
-    }
     private void onDrop( File file )
     {
         _text.file.set( file );
     }
 
+    public ObjectProperty<File> fileProperty ()
+    {
+        return _text.file;
+    }
     public void selectLine( int lineNumber )
     {
         _textArea.selectLine( lineNumber );

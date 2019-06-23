@@ -23,7 +23,9 @@ import javafx.scene.input.TransferMode;
  * file drag and drop, as well as text drag and drop.
  *
  * @author Michael Binz
+ * @deprecated Use FileDragManager
  */
+@Deprecated
 public class DragManager
 {
     private static final Logger LOG =

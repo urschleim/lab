@@ -87,10 +87,10 @@ public class XsltLabUiController
                 _textAreaResult );
 
         // TODO persist the file name instead of the text content.
-//        PropertyLink.persist(
-//                _textAreaXsl.textProperty(),
-//                PropertyLink.STRING_STRING_CONVERTER,
-//                "_textAreaXsl");
+        PropertyLink.persist(
+                _textAreaXsl.fileProperty(),
+                new FileStringConverter(),
+                "_textAreaXsl");
         PropertyLink.persist(
                 _textAreaXml.textProperty(),
                 PropertyLink.STRING_STRING_CONVERTER,
