@@ -1,4 +1,4 @@
-/* $Id: FxLineNumberTextArea.java 2152 2019-02-03 19:36:54Z Michael $
+/* $Id$
  *
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
@@ -96,17 +96,5 @@ public class FxLineNumberTextArea extends HBox
     public final StringProperty textProperty()
     {
         return textProperty;
-    }
-
-    /**
-     * Enable drag and drop.
-     * @param what True enables dnd.
-     */
-    public void setDndEnabled( boolean what )
-    {
-        if ( what )
-            DragManager.attachTo( _master );
-        else
-            DragManager.detachFrom( _master );
     }
 }

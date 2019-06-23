@@ -15,13 +15,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 
 /**
  *
  * @author Michael Binz
  */
-public class LargeTextView extends StackPane
+public class LargeTextView extends BorderPane
 {
     public final StringProperty textProperty =
             new SimpleStringProperty( this, "text", StringUtil.EMPTY_STRING );
@@ -50,7 +50,7 @@ public class LargeTextView extends StackPane
         // Wiring the components.
         _listView.contextMenuProperty().set(
                 _contextMenu );
-        getChildren().add(
+        setCenter(
                 _listView );
     }
 
@@ -77,8 +77,6 @@ public class LargeTextView extends StackPane
 
     private void textChangeListener( String text )
     {
-        textProperty.set( text );
-
         StringReader sr =
                 new StringReader( text );
         BufferedReader br =
@@ -90,12 +88,12 @@ public class LargeTextView extends StackPane
         while ( true )
         {
             try {
-            String line =
-                    br.readLine();
-            if ( line == null )
-                break;
+                String line =
+                        br.readLine();
+                if ( line == null )
+                    break;
 
-            list.add( line );
+                list.add( line );
             }
             catch ( Exception notPossible )
             {
@@ -104,11 +102,6 @@ public class LargeTextView extends StackPane
 
         _listView.setItems(
                 FXCollections.observableArrayList( list ) );
-    }
-
-    public void selectLine( int lineNumber )
-    {
-
     }
 
     /**
@@ -121,13 +114,5 @@ public class LargeTextView extends StackPane
     public final StringProperty textProperty()
     {
         return textProperty;
-    }
-
-    /**
-     * Enable drag and drop.
-     * @param what True enables dnd.
-     */
-    public void setDndEnabled( boolean what )
-    {
     }
 }

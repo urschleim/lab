@@ -49,7 +49,7 @@ public class XsltLabUiController
             String line =
                     XmlUtil.transform(
                             new StringReader( _textAreaXsl.getText() ),
-                            new StringReader( _textAreaXml.textProperty.get() ) );
+                            new StringReader( _textAreaXml.getText() ) );
 
             statusMessage( "Transformation took %s", tp.toString() );
 
@@ -70,10 +70,10 @@ public class XsltLabUiController
         }
     }
 
-    private TransformationComponent _textAreaXsl =
-            new TransformationComponent();
-    private LargeTextView _textAreaXml =
-            new LargeTextView();
+    private StylesheetView _textAreaXsl =
+            new StylesheetView();
+    private XmlView _textAreaXml =
+            new XmlView();
     private FxLineNumberTextArea _textAreaResult =
             new FxLineNumberTextArea();
 
@@ -92,11 +92,9 @@ public class XsltLabUiController
                 new FileStringConverter(),
                 "_textAreaXsl");
         PropertyLink.persist(
-                _textAreaXml.textProperty(),
-                PropertyLink.STRING_STRING_CONVERTER,
+                _textAreaXml.fileProperty(),
+                new FileStringConverter(),
                 "_textAreaXml" );
-
-        _textAreaXml.setDndEnabled( true );
     }
 
     private void statusMessage( String format, Object ... args )

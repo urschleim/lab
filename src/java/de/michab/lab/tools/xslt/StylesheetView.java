@@ -16,7 +16,7 @@ import javafx.scene.layout.BorderPane;
  *
  * @author Michael Binz
  */
-public class TransformationComponent extends BorderPane
+public class StylesheetView extends BorderPane
 {
     private TextFileLink _text =
             new TextFileLink();
@@ -30,7 +30,7 @@ public class TransformationComponent extends BorderPane
     /**
      *
      */
-    public TransformationComponent()
+    public StylesheetView()
     {
         // cool.
         _textArea.textProperty.bind(
