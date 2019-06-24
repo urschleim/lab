@@ -1,4 +1,4 @@
-/* $Id: XsltLabUi.java 2149 2019-02-03 13:26:57Z Michael $
+/* $Id$
  *
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
