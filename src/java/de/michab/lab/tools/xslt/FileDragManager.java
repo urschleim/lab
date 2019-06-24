@@ -36,10 +36,10 @@ class FileDragManager
      */
     public FileDragManager( Node host, Consumer<File> onDrop )
     {
-        _onDrop = onDrop;
-
-        _host = host;
-
+        _onDrop =
+                onDrop;
+        _host =
+                host;
         _host.setOnDragOver(
                 this::dragOver );
         _host.setOnDragDropped(
@@ -60,5 +60,13 @@ class FileDragManager
 
         if ( d.hasFiles() && d.getFiles().size() == 1 )
             _onDrop.accept( d.getFiles().get( 0 ) );
+    }
+
+    public void dispose()
+    {
+        _host.setOnDragOver(
+                null );
+        _host.setOnDragDropped(
+                null );
     }
 }
