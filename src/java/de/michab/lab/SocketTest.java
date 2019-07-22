@@ -90,6 +90,10 @@ public class SocketTest extends CliApplication
         t.start();
     }
 
+    /**
+     * Start only the server.  Terminates if the server receives an
+     * 'x' in its input stream.
+     */
     @Command
     public void startServer()
     {
@@ -98,6 +102,11 @@ public class SocketTest extends CliApplication
         startServer( false );
     }
 
+    /**
+     * Starts the full test in a single vm.
+     *
+     * @throws Exception In case of an error.
+     */
     @Command
     public void start() throws Exception
     {
@@ -105,15 +114,18 @@ public class SocketTest extends CliApplication
 
         startServer( true );
 
+        // Connect to the server.
         Socket socket = new Socket(
                 InetAddress.getLocalHost(),
                 testPort );
 
         OutputStream os = socket.getOutputStream();
+        // Write content to the server.
         os.write( "micbinz\nx".getBytes() );
         os.flush();
         InputStream is = socket.getInputStream();
 
+        // Read and print server output.
         while ( true )
         {
             int c = is.read();
