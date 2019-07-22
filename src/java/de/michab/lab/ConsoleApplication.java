@@ -1,4 +1,4 @@
-/* $Id: CliApplication.java 319 2017-06-01 19:35:44Z michab66 $
+/* $Id$
  *
  * Released under Gnu Public License
  * Copyright (c) 2017 Michael G. Binz
@@ -38,7 +38,9 @@ import org.jdesktop.util.StringUtil;
  * @version $Rev: 319 $
  * @author MICKARG
  * @author MICBINZ
+ * @deprecated Use Smack.
  */
+@Deprecated
 abstract public class ConsoleApplication
 {
     private static final Logger LOG =
