@@ -9,8 +9,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.jdesktop.util.JavaUtil;
-import org.jdesktop.util.StringUtil;
+import org.smack.util.JavaUtil;
+import org.smack.util.StringUtil;
 
 /**
  * Detect the system serial number on a Mac.

@@ -9,9 +9,10 @@ module framework.laboratory {
 	requires javafx.controls;
 	requires javafx.fxml;
     requires javafx.media;
-    requires javafx.swing;
 
     requires framework.smack;
+    requires javax.jws;
+    requires java.xml.ws;
 
     opens de.michab.lab.tools.xslt.resources
         to framework.smack;

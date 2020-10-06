@@ -10,8 +10,8 @@ import java.util.Scanner;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import org.jdesktop.smack.util.FileUtils;
-import org.jdesktop.util.StringUtil;
+import org.smack.util.FileUtil;
+import org.smack.util.StringUtil;
 
 /**
  * Create a unique computer id.
@@ -103,9 +103,9 @@ public class SerialNumberWin implements SystemSerialNumber
             }
         } finally {
             // See http://grep.codeconsult.ch/2005/02/01/better-cleanup-your-process-objects/
-            FileUtils.forceClose( process.getInputStream() );
-            FileUtils.forceClose( process.getErrorStream() );
-            FileUtils.forceClose( process.getOutputStream() );
+            FileUtil.forceClose( process.getInputStream() );
+            FileUtil.forceClose( process.getErrorStream() );
+            FileUtil.forceClose( process.getOutputStream() );
         }
 
         return null;
@@ -146,9 +146,9 @@ public class SerialNumberWin implements SystemSerialNumber
             }
         } finally {
             // See http://grep.codeconsult.ch/2005/02/01/better-cleanup-your-process-objects/
-            FileUtils.forceClose( process.getInputStream() );
-            FileUtils.forceClose( process.getErrorStream() );
-            FileUtils.forceClose( process.getOutputStream() );
+            FileUtil.forceClose( process.getInputStream() );
+            FileUtil.forceClose( process.getErrorStream() );
+            FileUtil.forceClose( process.getOutputStream() );
         }
 
         return null;

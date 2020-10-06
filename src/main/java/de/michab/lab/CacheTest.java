@@ -9,8 +9,8 @@ package de.michab.lab;
 
 import java.util.concurrent.ExecutionException;
 
-import org.jdesktop.smack.util.MathExt;
-import org.jdesktop.util.Duration;
+import org.smack.util.Duration;
+import org.smack.util.MathUtil;
 
 
 
@@ -29,7 +29,7 @@ public class CacheTest
                 try
                 {
                     System.err.println( Thread.currentThread().getName() + ": Init : " + pKey );
-                    Thread.sleep( org.jdesktop.util.Duration.MS_SEC );
+                    Thread.sleep( Duration.MS_SEC );
                 }
                 catch ( InterruptedException e )
                 {
@@ -59,12 +59,12 @@ public class CacheTest
         {
             long endTime =
                 System.currentTimeMillis() +
-                10 * Duration.MS_SEC;
+                10 * org.smack.util.Duration.MS_SEC;
 
             while ( System.currentTimeMillis() < endTime )
             {
                 Double result =
-                    elCache.get(  new Integer( MathExt.randomBetween( 0, 100 ) ) );
+                    elCache.get(  new Integer( MathUtil.randomBetween( 0, 100 ) ) );
 
                 if ( result == null )
                     System.err.print( "bah" );

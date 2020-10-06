@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.KeyStroke;
 
-import org.jdesktop.smack.util.ResourceUtils;
+import org.smack.util.ResourceUtil;
 
 
 /**
@@ -44,7 +44,7 @@ I18n
    getBundle()
    {
       if (bundle == null)
-         bundle = ResourceUtils.getClassResources( Wizard.class );
+         bundle = ResourceUtil.getClassResources( Wizard.class );
 
       return bundle;
    }

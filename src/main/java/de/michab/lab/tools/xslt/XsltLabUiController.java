@@ -13,8 +13,8 @@ import javax.xml.transform.SourceLocator;
 import javax.xml.transform.TransformerException;
 
 import org.jdesktop.beans.PropertyLink;
-import org.jdesktop.util.StringUtil;
-import org.jdesktop.util.TimeProbe;
+import org.smack.util.StringUtil;
+import org.smack.util.TimeProbe;
 import org.smack.util.XmlUtil;
 import org.xml.sax.SAXParseException;
 

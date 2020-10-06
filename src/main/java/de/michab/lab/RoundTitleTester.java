@@ -22,7 +22,8 @@ import java.awt.geom.Point2D;
 
 import javax.swing.JPanel;
 
-import org.jdesktop.util.TimeProbe;
+import org.smack.util.TimeProbe;
+
 
 
 /**

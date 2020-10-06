@@ -18,7 +18,7 @@ import java.nio.file.WatchService;
 
 import org.jdesktop.application.CliApplication;
 import org.jdesktop.util.InterruptibleThread;
-import org.jdesktop.util.StringUtil;
+import org.smack.util.StringUtil;
 
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.SimpleObjectProperty;

@@ -8,13 +8,12 @@ import java.security.PublicKey;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.jdesktop.smack.util.ResourceUtils;
-import org.jdesktop.util.JavaUtil;
+import org.jdesktop.application.CliApplication;
+import org.smack.util.JavaUtil;
+import org.smack.util.ResourceUtil;
 import org.smack.util.SecurityUtil;
 
-import de.michab.lab.ConsoleApplication;
-
-public class SecurityCli extends ConsoleApplication
+public class SecurityCli extends CliApplication
 {
     private static final Logger LOG =
             Logger.getLogger( SecurityCli.class.getName() );
@@ -37,7 +36,7 @@ public class SecurityCli extends ConsoleApplication
         KeyStore ks =
                 KeyStore.getInstance( "pkcs12" );
 
-        try ( InputStream ksfis = ResourceUtils.getResourceAsStream(
+        try ( InputStream ksfis = ResourceUtil.getResourceAsStream(
                 SecurityCli.class,
                 "mmt.pfx" ) )
         {
@@ -54,7 +53,7 @@ public class SecurityCli extends ConsoleApplication
 
     private static final PublicKey loadPublic()
     {
-        InputStream is = ResourceUtils.getResourceAsStream(
+        InputStream is = ResourceUtil.getResourceAsStream(
                 SecurityCli.class,
                 "mmt.cert" );
         try

@@ -7,7 +7,7 @@ package de.michab.lab.tools.xslt;
 
 import java.util.List;
 
-import org.jdesktop.util.StringUtil;
+import org.smack.util.StringUtil;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;

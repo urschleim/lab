@@ -2,7 +2,7 @@ package de.michab.lab.tools.xslt;
 
 import javax.xml.transform.SourceLocator;
 
-import org.jdesktop.util.StringUtil;
+import org.smack.util.StringUtil;
 
 public class SourceLocatorImpl implements SourceLocator
 {

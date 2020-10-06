@@ -2,7 +2,7 @@ package de.michab.lab.tools.xslt;
 
 import java.io.File;
 
-import org.jdesktop.util.StringUtil;
+import org.smack.util.StringUtil;
 
 import javafx.util.StringConverter;
 

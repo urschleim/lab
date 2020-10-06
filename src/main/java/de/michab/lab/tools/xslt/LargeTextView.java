@@ -5,7 +5,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jdesktop.util.StringUtil;
+import org.smack.util.StringUtil;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

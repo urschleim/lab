@@ -11,7 +11,7 @@ package de.michab.lab;
 import java.awt.Color;
 import java.util.Arrays;
 
-import org.jdesktop.smack.util.MathExt;
+import org.smack.util.MathUtil;
 
 /**
  * Experimental class for polynomial computation.
@@ -82,7 +82,7 @@ public class LinearInterpolation
 
         for ( int i = 0 ; i < result[X].length ; i++ )
             result[Y][i] =
-                MathExt.computePolynomial( result[X][i], polynomial );
+                MathUtil.computePolynomial( result[X][i], polynomial );
 
         return result;
     }

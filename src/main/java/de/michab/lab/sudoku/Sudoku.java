@@ -14,9 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.jdesktop.smack.util.CollectionUtils;
-import org.jdesktop.smack.util.MathExt;
-import org.jdesktop.util.TimeProbe;
+import org.smack.util.MathUtil;
+import org.smack.util.TimeProbe;
+import org.smack.util.collections.CollectionUtil;
 
 
 /**
@@ -151,7 +151,7 @@ public class Sudoku
      */
     private void solveImpl( int cellIdx )
     {
-        maxIdx = MathExt.max( cellIdx, maxIdx );
+        maxIdx = MathUtil.max( cellIdx, maxIdx );
 
         final int rowIdx = rowIdx( cellIdx );
         final int colIdx = colIdx( cellIdx );
@@ -164,9 +164,9 @@ public class Sudoku
         try
         {
             Set<Integer> intersection =
-                CollectionUtils.intersection(
+                CollectionUtil.intersection(
                         grpSet,
-                        CollectionUtils.intersection(
+                        CollectionUtil.intersection(
                                 rowSet,
                                 colSet ) );
 

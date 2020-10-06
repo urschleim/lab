@@ -11,7 +11,7 @@ package de.michab.lab;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 
-import org.jdesktop.smack.util.MathExt;
+import org.smack.util.MathUtil;
 
 
 /**
@@ -72,7 +72,7 @@ public class EllipticPath
     private Point nextImpl( Point current, float arc )
     {
         // Deliberately use integers in x direction.
-        int rx = MathExt.round( current.x + arc );
+        int rx = MathUtil.round( current.x + arc );
         double ry = yFor( rx );
 
         // TODO Note that we could limit the number of required
@@ -83,7 +83,7 @@ public class EllipticPath
 
         double epsilon = Math.abs(
                 arc -
-                MathExt.distance(
+                MathUtil.distance(
                         current.x, current.y, rx, ry ) );
 
         // TODO Make sure we terminate always.
@@ -94,13 +94,13 @@ public class EllipticPath
 
             double nepsilon = Math.abs(
                     arc -
-                    MathExt.distance(
+                    MathUtil.distance(
                             current.x, current.y, nrx, nry ) );
 
             // If the error is getting bigger...
             if ( nepsilon >= epsilon )
                 // ...we are done.
-                return new Point( rx, MathExt.round( ry ) );
+                return new Point( rx, MathUtil.round( ry ) );
 
             rx = nrx;
             ry = nry;

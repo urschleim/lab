@@ -3,14 +3,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jdesktop.util.TimeProbe;
-
-import de.michab.lab.ConsoleApplication;
+import org.jdesktop.application.CliApplication;
+import org.smack.util.TimeProbe;
 
 /**
  *
  */
-final public class Decompose extends ConsoleApplication
+final public class Decompose extends CliApplication
 {
     private List<List<Integer>> dc2(
             List<Integer> pool,
