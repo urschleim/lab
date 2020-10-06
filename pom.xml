@@ -4,6 +4,14 @@
   <artifactId>lab</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  <repositories>
+   <repository>
+     <id>github</id>
+     <name>GitHub OWNER Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/michab66/dev_smack</url>
+   </repository>
+  </repositories>
+  
   <build>
     <plugins>
       <plugin>
@@ -41,7 +49,7 @@
     <dependency>
       <groupId>micbinz</groupId>
       <artifactId>smack</artifactId>
-      <version>11.394</version>
+      <version>11.396</version>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
