@@ -7,12 +7,15 @@ module framework.laboratory {
 	requires java.prefs;
 	requires javafx.base;
 	requires javafx.controls;
+	requires javafx.graphics;
 	requires javafx.fxml;
     requires javafx.media;
 
     requires framework.smack;
     requires javax.jws;
     requires java.xml.ws;
+
+    exports moleculesampleapp to javafx.graphics;
 
     opens de.michab.lab.tools.xslt.resources
         to framework.smack;
