@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jdesktop.application.CliApplication;
+import org.smack.application.CliApplication;
 import org.smack.util.TimeProbe;
 
 /**
