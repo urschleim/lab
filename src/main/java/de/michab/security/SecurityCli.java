@@ -8,7 +8,7 @@ import java.security.PublicKey;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.jdesktop.application.CliApplication;
+import org.smack.application.CliApplication;
 import org.smack.util.JavaUtil;
 import org.smack.util.ResourceUtil;
 import org.smack.util.SecurityUtil;
@@ -20,7 +20,6 @@ public class SecurityCli extends CliApplication
 
     private final static String PASSWORD = "87c96f0d";
     private final static String ALIAS = "mmt";
-    private final static String KEYSTORE = "resources/mmt.pfx";
 
     public SecurityCli()
     {

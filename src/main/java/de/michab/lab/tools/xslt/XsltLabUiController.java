@@ -5,8 +5,8 @@
  */
 package de.michab.lab.tools.xslt;
 
+import java.io.ByteArrayInputStream;
 import java.io.PrintWriter;
-import java.io.StringReader;
 import java.io.StringWriter;
 
 import javax.xml.transform.SourceLocator;
@@ -15,7 +15,7 @@ import javax.xml.transform.TransformerException;
 import org.jdesktop.beans.PropertyLink;
 import org.smack.util.StringUtil;
 import org.smack.util.TimeProbe;
-import org.smack.util.XmlUtil;
+import org.smack.util.xml.XmlUtil;
 import org.xml.sax.SAXParseException;
 
 import javafx.event.ActionEvent;
@@ -48,8 +48,8 @@ public class XsltLabUiController
 
             String line =
                     XmlUtil.transform(
-                            new StringReader( _textAreaXsl.getText() ),
-                            new StringReader( _textAreaXml.getText() ) );
+                            new ByteArrayInputStream( _textAreaXsl.getText().getBytes() ),
+                            new ByteArrayInputStream( _textAreaXml.getText().getBytes() ) );
 
             statusMessage( "Transformation took %s", tp.toString() );
 
