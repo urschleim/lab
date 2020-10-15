@@ -39,7 +39,7 @@ public class SphereAndBox extends Application
         return perspectiveCamera;
     }
 
-    private Spinner<Double> makeSpinner()
+    private Spinner<Double> makeSpinner( DoubleProperty dp )
     {
         var objectProp = new SimpleObjectProperty<>(0.0d);
         var dProperty = DoubleProperty.doubleProperty(objectProp);
@@ -114,17 +114,14 @@ public class SphereAndBox extends Application
                 null,
                 null,
                 null );
-
-        var objectProp = new SimpleObjectProperty<>(0.0d);
-        var dProperty = DoubleProperty.doubleProperty(objectProp);
-        _doublep.bind( dProperty );
-
-        var spinner = new Spinner<Double>(0, 360, 0);
-
-        _doublep.bind( spinner.getValueFactory().valueProperty() );
-
-        toolbar.getItems().add( spinner );
-        layout.setTop( toolbar );
+        var spinner =
+                new Spinner<Double>(0, 360, 0);
+        _doublep.bind(
+                spinner.getValueFactory().valueProperty() );
+        toolbar.getItems().add(
+                spinner );
+        layout.setTop(
+                toolbar );
 
         var scene = new Scene(layout, 500, 500, true);
 
