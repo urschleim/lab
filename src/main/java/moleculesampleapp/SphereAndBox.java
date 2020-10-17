@@ -131,11 +131,11 @@ public class SphereAndBox extends Application
             }
             else if ( e.getCode().equals( KeyCode.LEFT ) )
             {
-                inc( rotations, 2 );
+                dec( rotations, 2 );
             }
             else if ( e.getCode().equals( KeyCode.RIGHT ) )
             {
-                dec( rotations, 2 );
+                inc( rotations, 2 );
             }
             else {
                 return;
