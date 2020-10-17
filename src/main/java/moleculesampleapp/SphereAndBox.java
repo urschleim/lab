@@ -20,7 +20,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 
@@ -99,7 +98,6 @@ public class SphereAndBox extends Application
 
         var parent = new Group(box);
         parent.setTranslateZ(500);
-        parent.setRotationAxis( Rotate.X_AXIS );
 
         var root = new Group(parent);
 
@@ -122,12 +120,10 @@ public class SphereAndBox extends Application
             if ( e.getCode().equals( KeyCode.UP ) )
             {
                 inc( rotations, 1 );
-                System.out.println( "x:" + rotations[1] );
             }
             else if ( e.getCode().equals( KeyCode.DOWN ) )
             {
                 dec( rotations, 1 );
-                System.out.println( "x:" + rotations[1] );
             }
             else if ( e.getCode().equals( KeyCode.LEFT ) )
             {
@@ -144,12 +140,11 @@ public class SphereAndBox extends Application
                     parent,
                     Math.toRadians( rotations[0] ),
                     Math.toRadians( rotations[1] ),
-                    Math.toRadians( rotations[2] )
-                    );
+                    Math.toRadians( rotations[2] ) );
         });
 
         result.setCamera(
-                new PerspectiveCamera());
+                new PerspectiveCamera(false));
 
         return result;
     }
@@ -157,7 +152,7 @@ public class SphereAndBox extends Application
     @Override
     public void start( Stage primaryStage )
     {
-        primaryStage.setTitle("SphereAndBox");
+        primaryStage.setTitle("micbinz");
 
         ToolBar toolbar =
                 new ToolBar();
