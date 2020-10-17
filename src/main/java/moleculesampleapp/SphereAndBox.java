@@ -8,7 +8,6 @@ import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.PerspectiveCamera;
-import javafx.scene.PointLight;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
@@ -17,17 +16,12 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.stage.Stage;
 
 
 public class SphereAndBox extends Application
 {
-    private double anchorX;
-    private double anchorY;
-    private double anchorAngle;
-
     private Spinner<Double> makeSpinner( String name, DoubleProperty dp, double min, double max )
     {
         var result = new Spinner<Double>(
@@ -45,12 +39,7 @@ public class SphereAndBox extends Application
 
     private SubScene subscene( List<Node> toolbar )
     {
-        var boxMaterial = new PhongMaterial();
-        boxMaterial.setDiffuseColor(Color.GREEN);
-        boxMaterial.setSpecularColor(Color.WHITESMOKE);
-
         var box = new Box(400, 400, 400);
-        box.setMaterial(boxMaterial);
 
         box.setTranslateX(250);
         box.setTranslateY(250);
@@ -63,27 +52,10 @@ public class SphereAndBox extends Application
         var root = new Group(parent);
 
         var result = new SubScene(root, 500, 500, true, SceneAntialiasing.DISABLED);
-
-        //        result.setOnMousePressed( event -> {
-        //            anchorX = event.getSceneX();
-        //            anchorY = event.getSceneY();
-        //            anchorAngle = parent.getRotate();
-        //        });
-        //
-        //        result.setOnMouseDragged( event -> {
-        //            parent.setRotate(anchorAngle + anchorX - event.getSceneX());
-        //        });
+        result.setFill( Color.DARKGREEN );
 
         toolbar.add( makeSpinner( "tz", box.translateZProperty(), 100, 5000 ) );
         toolbar.add( makeSpinner( "rotate", parent.rotateProperty(), 0, 360 ) );
-
-        {
-            var pointLight = new PointLight(Color.ANTIQUEWHITE);
-            pointLight.setTranslateX(15);
-            pointLight.setTranslateY(-10);
-            pointLight.setTranslateZ(-100);
-            root.getChildren().add(pointLight);
-        }
 
         result.setCamera(
                 new PerspectiveCamera(false));
@@ -109,7 +81,9 @@ public class SphereAndBox extends Application
         layout.setTop(
                 toolbar );
 
-        var scene = new Scene(layout, 500, 500, true);
+        var scene =
+                new Scene(layout, 500, 500, true);
+        scene.setFill( Color.BLACK );
 
         primaryStage.setScene(scene);
         primaryStage.show();
