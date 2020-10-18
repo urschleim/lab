@@ -94,10 +94,9 @@ public class SphereAndBox extends Application
 
     private SubScene subscene( List<Node> toolbar )
     {
-        var box = new Box(400, 400, 400);
+        var box = new Box(40, 40, 40);
 
         var parent = new Group(box);
-        parent.setTranslateZ(500);
 
         var root = new Group(parent);
 
@@ -143,8 +142,13 @@ public class SphereAndBox extends Application
                     Math.toRadians( rotations[2] ) );
         });
 
+        var camera1 = new PerspectiveCamera( true );
+        camera1.setTranslateZ( -500 );
+        camera1.setNearClip(1);
+        camera1.setFarClip(1000);
+
         result.setCamera(
-                new PerspectiveCamera(false));
+                camera1 );
 
         return result;
     }
