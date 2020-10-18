@@ -4,6 +4,8 @@ import java.util.List;
 
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Orientation;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
@@ -25,7 +27,7 @@ public abstract class Lab3dApplication extends Application
 {
     protected abstract Parent createActors( List<Node> toolbar );
 
-    private Spinner<Double> makeSpinner( String name, DoubleProperty dp, double min, double max )
+    protected Spinner<Double> makeSpinner( String name, DoubleProperty dp, double min, double max )
     {
         var result = new Spinner<Double>(
                 min,
@@ -38,6 +40,27 @@ public abstract class Lab3dApplication extends Application
                 true );
         dp.bind(
                 result.getValueFactory().valueProperty() );
+        return result;
+    }
+
+    protected Slider makeSlider(
+            String name,
+            Orientation orientation,
+            DoubleProperty dp,
+            double min,
+            double max )
+    {
+        var result = new Slider(
+                min,
+                max,
+                dp.doubleValue());
+
+        result.setOrientation(
+                orientation );
+        result.setTooltip(
+                new Tooltip( name ) );
+        dp.bind(
+                result.valueProperty() );
         return result;
     }
 
@@ -104,13 +127,11 @@ public abstract class Lab3dApplication extends Application
                 SceneAntialiasing.DISABLED);
         result.setFill( Color.DARKGREEN );
 
-//        toolbar.add( makeSpinner( "tz", box.translateZProperty(), 100, 5000 ) );
-//        toolbar.add( makeSpinner( "rotate", parent.rotateProperty(), 0, 360 ) );
-
         // roll z, pitch x, yaw y.
         double[] rotations = new double[3];
 
         result.setFocusTraversable( true );
+
         result.setOnKeyPressed( e -> {
             if ( e.getCode().equals( KeyCode.UP ) )
             {
@@ -131,6 +152,9 @@ public abstract class Lab3dApplication extends Application
             else {
                 return;
             }
+
+            e.consume();
+
             matrixRotateNode(
                     parent,
                     Math.toRadians( rotations[0] ),
@@ -149,31 +173,57 @@ public abstract class Lab3dApplication extends Application
         return result;
     }
 
+    private Parent _parent;
+    private DoubleProperty _x = new SimpleDoubleProperty();
+    private DoubleProperty _y = new SimpleDoubleProperty();
+    private DoubleProperty _z = new SimpleDoubleProperty();
+
+    private void rotationHandler(
+            ObservableValue<? extends Number> observable,
+            Number oldValue,
+            Number newValue )
+    {
+        matrixRotateNode(
+                _parent,
+                Math.toRadians( _z.get() ),
+                Math.toRadians( _x.get() ),
+                Math.toRadians( _y.get() ) );
+    }
+
     @Override
     public void start( Stage primaryStage )
     {
-        primaryStage.setTitle("micbinz");
+        primaryStage.setTitle("3D lab");
 
         ToolBar toolbar =
                 new ToolBar();
         var subscene =
                 subscene(toolbar.getItems());
 
-        var sl = new Slider( 0, 360, 0 );
-        sl.setOrientation( Orientation.VERTICAL );
+        _parent = subscene.getRoot();
+
+        _x = new SimpleDoubleProperty( _parent, "x" );
+        _y = new SimpleDoubleProperty( _parent, "y" );
+        _z = new SimpleDoubleProperty( _parent, "z" );
+
+        _x.addListener( this::rotationHandler );
+        _y.addListener( this::rotationHandler );
+        _z.addListener( this::rotationHandler );
 
         var layout = new BorderPane(
                 subscene,
-                null,
-                null,
-                null,
+                toolbar,
+                makeSlider( "x", Orientation.VERTICAL, _x, 0, 359 ),
+                makeSlider( "y", Orientation.HORIZONTAL, _y, 0, 359 ),
                 null );
 
         var scene =
                 new Scene(layout);
-        scene.setFill( Color.BLACK );
+        scene.setFill(
+                Color.PINK );
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 }
