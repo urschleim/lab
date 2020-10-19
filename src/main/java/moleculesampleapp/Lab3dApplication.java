@@ -59,6 +59,7 @@ public abstract class Lab3dApplication extends Application
                 orientation );
         result.setTooltip(
                 new Tooltip( name ) );
+        result.setBlockIncrement( 1 );
         dp.bind(
                 result.valueProperty() );
         return result;

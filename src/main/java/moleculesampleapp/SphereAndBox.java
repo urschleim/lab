@@ -6,7 +6,8 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.shape.Box;
+import javafx.scene.shape.MeshView;
+import javafx.scene.shape.TriangleMesh;
 
 
 public class SphereAndBox extends Lab3dApplication
@@ -14,15 +15,41 @@ public class SphereAndBox extends Lab3dApplication
     @Override
     protected Parent createActors( List<Node> toolbar )
     {
-        var box = new Box(40, 40, 40);
+        float[] points = {
+                10,10,10,
+                20,20,0,
+                0,20,0,
+                10,20,20
+        };
+        // Reuse a single texture mapping.
+        float[] texCoo = {
+                0f,0f,
+                0f,1f,
+                1f,0f
+        };
+        int[] faces = {
+                0,0,2,1,1,2,
+                0,0,1,2,2,1,
+                0,0,1,1,3,2,
+                0,0,3,2,1,1,
+                0,0,3,1,2,2,
+                0,0,2,2,3,1,
+                1,0,3,1,2,2,
+                1,0,2,2,3,1
+        };
+        var mesh = new TriangleMesh();
+        mesh.getPoints().addAll( points );
+        mesh.getTexCoords().addAll( texCoo );
+        mesh.getFaces().addAll( faces );
+        var meshView = new MeshView( mesh );
 
-        toolbar.add( makeSpinner(
-                "width",
-                box.widthProperty(),
-                10,
-                500 ) );
+        var result = new Group( meshView );
+        var scale = 4d;
+        result.setScaleX( scale );
+        result.setScaleY( scale );
+        result.setScaleZ( scale );
 
-        return  new Group(box);
+        return result;
     }
 
     public static void main( String[] args )
