@@ -15,25 +15,27 @@ public class FunctionalAnonymousInit
 
     public static void main( String[] args )
     {
-        PhongMaterial a =
+        PhongMaterial pm1 =
                 ((Init<PhongMaterial>)(c) -> {
                     c.setDiffuseColor(Color.GREEN);
                     c.setSpecularColor(Color.WHITESMOKE);
                     return c;
                 }).init( new PhongMaterial() );
 
-        PhongMaterial b =
+        PhongMaterial pm2 =
                 ((Function<PhongMaterial,PhongMaterial>)(c) -> {
                     c.setDiffuseColor(Color.GREEN);
                     c.setSpecularColor(Color.WHITESMOKE);
                     return c;
                 }).apply( new PhongMaterial() );
 
-        PhongMaterial c =
-                ((Init2<PhongMaterial>)(d) -> {
-                    d.setDiffuseColor(Color.GREEN);
-                    d.setSpecularColor(Color.WHITESMOKE);
-                    return d;
+        PhongMaterial pm3 =
+                ((Init2<PhongMaterial>)(c) -> {
+                    c.setDiffuseColor(Color.GREEN);
+                    c.setSpecularColor(Color.WHITESMOKE);
+                    return c;
                 }).apply( new PhongMaterial() );
+
+        System.out.printf( "pm1=%s%npm2=%s%npm3=%s%n", pm1, pm2, pm3 );
     }
 }
