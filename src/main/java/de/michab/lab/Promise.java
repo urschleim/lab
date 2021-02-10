@@ -1,3 +1,8 @@
+/*
+ * $Id$
+ * Released under Gnu Public License
+ * Copyright © 2021 Michael G. Binz
+ */
 package de.michab.lab;
 
 import java.util.concurrent.Semaphore;
