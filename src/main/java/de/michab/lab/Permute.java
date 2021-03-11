@@ -1,75 +1,124 @@
 package de.michab.lab;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Permute{
-    static float compute( List<Float> p )
+public class Permute
+{
+
+    static void swap( char[] array, int first, int last )
     {
-        return compute(
-                p.get( 0 ),
-                p.get( 1 ),
-                p.get( 2 ),
-                p.get( 3 ),
-                p.get( 4 ),
-                p.get( 5 ) );
+        char tmp = array[last];
+        array[last] = array[first];
+        array[first] = tmp;
     }
 
-    static float compute( float a, float b, float c, float d, float e, float f)
+    static void reverse( char[] array, int first, int last )
     {
-        var result =
-                a;
-        result -=
-                b;
-        result *=
-                10;
-        result *=
-                8;
-        result /=
-                c;
-        result +=
-                13;
-        result -=
-                d;
-        result *=
-                e;
-        result +=
-                f;
+        last--;
 
-        return result;
-    }
+        if ( first > last )
+            throw new IllegalArgumentException();
+        if ( first == last )
+            return;
 
-    static List<List<Float>> permutations =
-            new ArrayList<>();
-
-    static void permute(java.util.List<Float> arr, int k){
-        for(int i = k; i < arr.size(); i++){
-            java.util.Collections.swap(arr, i, k);
-            permute(arr, k+1);
-            java.util.Collections.swap(arr, k, i);
-        }
-        if (k == arr.size() -1){
-            System.out.println(java.util.Arrays.toString(arr.toArray()));
-            permutations.add( new ArrayList<Float>( arr ) );
-        }
-    }
-
-    public static void main(String[] args){
-
-        permute(java.util.Arrays.asList(1f,2f,4f,5f,7f,12f), 0);
-
-        int count = 0;
-        for ( var c : permutations )
+        do
         {
-            var value =
-                    compute( c );
-            System.out.printf( "%s: %s -> %s%n",
-                    count++,
-                    c,
-                    value );
+            swap( array, first++, last-- );
+        } while ( first < last );
+    }
 
-            if ( value == 58f )
-                return;
+    static <T> void reverse( List<T> array, int first, int last )
+    {
+        last--;
+
+        if ( first > last )
+            throw new IllegalArgumentException();
+        if ( first == last )
+            return;
+
+        do
+        {
+            Collections.swap( array, first++, last-- );
+        } while ( first < last );
+    }
+
+    static boolean next_permutation( char[] array, int first, int last )
+    {
+        if (first == last )
+            return false;
+        int i = first;
+        ++i;
+        if ( i == last )
+            return false;
+        i = last;
+        --i;
+
+        while ( true )
+        {
+            int ii = i;
+            --i;
+            if ( array[i] < array[ii] )
+            {
+                int j = last;
+                while (!(array[i] < array[--j]))
+                    ;
+                swap( array, i, j );
+                reverse( array, ii, last );
+                return true;
+            }
+            if (i == first)
+            {
+                reverse( array, first, last);
+                return false;
+            }
         }
+    }
+
+    static <T extends Comparable<T>> boolean next_permutation( List<T> array, int first, int last )
+    {
+        if (first == last )
+            return false;
+        int i = first;
+        ++i;
+        if ( i == last )
+            return false;
+        i = last;
+        --i;
+
+        while ( true )
+        {
+            int ii = i;
+            --i;
+            if ( array.get( i ).compareTo( array.get( ii ) ) < 0 )
+            {
+                int j = last;
+                while (!(array.get( i ).compareTo( array.get( --j ) ) < 0 ) )
+                    ;
+
+                Collections.swap( array, i, j );
+                reverse( array, ii, last );
+                return true;
+            }
+            if (i == first)
+            {
+                reverse( array, first, last);
+                return false;
+            }
+        }
+    }
+
+    public static <T extends Comparable<T>> boolean next_permutation( List<T> array )
+    {
+        return next_permutation( array, 0, array.size() );
+    }
+
+    public static void main( String[] args )
+    {
+        char[] xs = "binz".toCharArray();
+        do
+        {
+            System.out.println( new String( xs ) );
+        } while ( next_permutation(xs, 0, xs.length ) );
     }
 }
