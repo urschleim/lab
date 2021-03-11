@@ -1,4 +1,4 @@
-package org.jdesktop.beans;
+package de.michab.lab;
 
 import java.util.ArrayList;
 import java.util.List;
