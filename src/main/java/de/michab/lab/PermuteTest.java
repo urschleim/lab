@@ -39,7 +39,7 @@ class PermuteTest{
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main2(String[] args){
 
         var floats = Arrays.asList(1f,2f,4f,5f,7f,12f);
 
@@ -53,9 +53,20 @@ class PermuteTest{
                     floats,
                     value );
 
+            // 5 4 2 7 1 12
+
             if ( value == 58f )
                 return;
         }
         while ( Permute.next_permutation( floats ) );
+    }
+
+    public static void main( String[] args )
+    {
+        char[] xs = "binz".toCharArray();
+        do
+        {
+            System.out.println( new String( xs ) );
+        } while ( Permute.next_permutation(xs, 0, xs.length ) );
     }
 }
