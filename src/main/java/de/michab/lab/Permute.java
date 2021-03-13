@@ -90,18 +90,22 @@ public class Permute
     }
 
     /**
-     * A translation of the C++ implementation of std::next_permutation.
-     * See https://en.cppreference.com/w/cpp/algorithm/next_permutation for
-     * the algorithm.
+     * Permutes the elements in the passed list in-place.  Each call results in the next
+     * permutation in the list.  Does not return duplicates.
      *
-     * @param <T>
-     * @param elements
-     * @param first
-     * @param last
-     * @return
+     * @param <T> The type of the elements.
+     * @param elements A list of elements that is permuted in-place.  Note that this
+     * list is required to be sorted in ascending order for the first call.
+     * @param first The first element index to be part of the permutation.
+     * @param last The last element index to be part of the permutation.  Note that this is excluding,
+     * ie, the element at this index is not used.
+     * @return true if there a are more permutations available, false otherwise.
      */
     static <T extends Comparable<T>> boolean next_permutation( List<T> elements, int first, int last )
     {
+        // A translation of the C++ implementation of std::next_permutation.
+        // See https://en.cppreference.com/w/cpp/algorithm/next_permutation for
+        // the algorithm.
         if (first == last )
             return false;
         int i = first;
@@ -133,6 +137,15 @@ public class Permute
         }
     }
 
+    /**
+     * Permutes the elements in the passed list in-place.  Each call results in the next
+     * permutation in the list.  Does not return duplicates.
+     *
+     * @param <T> The type of the elements.
+     * @param elements A list of elements that is permuted in-place.  Note that this
+     * list is required to be sorted in ascending order for the first call.
+     * @return true if there a are more permutations available, false otherwise.
+     */
     public static <T extends Comparable<T>> boolean next_permutation( List<T> elements )
     {
         return next_permutation( elements, 0, elements.size() );
