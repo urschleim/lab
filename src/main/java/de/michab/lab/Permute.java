@@ -1,7 +1,12 @@
 package de.michab.lab;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class Permute
 {
@@ -149,5 +154,56 @@ public class Permute
     public static <T extends Comparable<T>> boolean next_permutation( List<T> elements )
     {
         return next_permutation( elements, 0, elements.size() );
+    }
+
+    private static class itr<T extends Comparable<T>>
+        implements Iterator<List<T>>
+    {
+        private final List<T> _state;
+
+        private boolean _hasNext = true;
+
+        public itr( Collection<T> toPermute )
+        {
+            _state = new ArrayList<>( toPermute );
+
+            Collections.sort( _state );
+        }
+
+        @Override
+        public boolean hasNext()
+        {
+            return _hasNext;
+        }
+
+        @Override
+        public List<T> next()
+        {
+            var result =
+                    new ArrayList<T>( _state );
+            _hasNext =
+                    next_permutation( _state );
+            return result;
+        }
+    }
+
+    public static <T extends Comparable<T>>
+    Iterator<List<T>> iterator( List<T> list )
+    {
+        return new itr<>( list );
+    }
+
+    public static <T extends Comparable<T>>
+    Iterable<List<T>> elements( List<T> list )
+    {
+        return () -> Permute.iterator( list );
+    }
+
+    public static <T extends Comparable<T>>
+    Stream<List<T>> stream( List<T> list )
+    {
+        return StreamSupport.stream(
+                elements( list ).spliterator(),
+                false );
     }
 }
