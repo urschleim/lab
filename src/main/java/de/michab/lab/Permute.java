@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -179,6 +180,9 @@ public class Permute
         @Override
         public List<T> next()
         {
+            if ( ! _hasNext )
+                throw new NoSuchElementException();
+
             var result =
                     new ArrayList<T>( _state );
             _hasNext =

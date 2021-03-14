@@ -2,9 +2,12 @@ package de.michab.lab;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
@@ -133,6 +136,30 @@ public class PermuteTest
     }
 
     @Test
+    public void testEmptyInput()
+    {
+        int count = 0;
+
+        List<Character> empty = Collections.emptyList();
+
+        do
+        {
+            count++;
+        } while ( Permute.next_permutation( empty, 0, empty.size() ) );
+
+        assertEquals( 1, count );
+
+        count = 0;
+
+        do
+        {
+            count++;
+        } while ( Permute.next_permutation( empty ) );
+
+        assertEquals( 1, count );
+    }
+
+    @Test
     public void testIterator()
     {
         var itr = Permute.iterator( Arrays.asList( 'm' ) );
@@ -148,7 +175,51 @@ public class PermuteTest
     }
 
     @Test
-    public void testIterator123()
+    public void testIteratorEmpty()
+    {
+        var itr = Permute.iterator(
+                Collections.emptyList() );
+
+        int count = 0;
+        while ( itr.hasNext() )
+        {
+            count++;
+            var next = itr.next();
+            assertEquals( 0, next.size() );
+        }
+        assertEquals( 1, count );
+    }
+
+    @Test
+    public void testIteratorOverrun()
+    {
+        var itr = Permute.iterator( Arrays.asList( 'm' ) );
+        // Read the single element.
+        itr.next();
+        try
+        {
+            itr.next();
+            fail();
+        }
+        catch ( NoSuchElementException expected )
+        {
+        }
+    }
+
+    @Test
+    public void testIteratorNull()
+    {
+        try
+        {
+            Permute.iterator( null );
+        }
+        catch ( NullPointerException expected )
+        {
+        }
+    }
+
+    @Test
+    public void testIteratorSorted()
     {
         var values = Arrays.asList( 1,2,3 );
         var itr = Permute.iterator( values );
@@ -164,7 +235,7 @@ public class PermuteTest
     }
 
     @Test
-    public void testIterator321()
+    public void testIteratorUnsorted()
     {
         var values = Arrays.asList( 3,2,1 );
         var itr = Permute.iterator( values );
