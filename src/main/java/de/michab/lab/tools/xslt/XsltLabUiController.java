@@ -12,7 +12,6 @@ import java.io.StringWriter;
 import javax.xml.transform.SourceLocator;
 import javax.xml.transform.TransformerException;
 
-import org.jdesktop.beans.PropertyLink;
 import org.smack.util.StringUtil;
 import org.smack.util.TimeProbe;
 import org.smack.util.xml.XmlUtil;
@@ -87,14 +86,14 @@ public class XsltLabUiController
                 _textAreaResult );
 
         // TODO persist the file name instead of the text content.
-        PropertyLink.persist(
-                _textAreaXsl.fileProperty(),
-                new FileStringConverter(),
-                "_textAreaXsl");
-        PropertyLink.persist(
-                _textAreaXml.fileProperty(),
-                new FileStringConverter(),
-                "_textAreaXml" );
+//        PropertyLink.persist(
+//                _textAreaXsl.fileProperty(),
+//                new FileStringConverter(),
+//                "_textAreaXsl");
+//        PropertyLink.persist(
+//                _textAreaXml.fileProperty(),
+//                new FileStringConverter(),
+//                "_textAreaXml" );
     }
 
     private void statusMessage( String format, Object ... args )

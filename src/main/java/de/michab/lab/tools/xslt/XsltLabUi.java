@@ -8,7 +8,6 @@ package de.michab.lab.tools.xslt;
 import java.net.URL;
 
 import org.jdesktop.application.ApplicationInfo;
-import org.jdesktop.beans.PropertyLink;
 import org.jdesktop.util.ResourceManager;
 import org.jdesktop.util.ResourceManager.Resource;
 import org.jdesktop.util.ServiceManager;
@@ -19,7 +18,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.converter.NumberStringConverter;
 
 /**
  * The MMT security administration application.
@@ -56,8 +54,8 @@ public class XsltLabUi extends Application
             Stage stage ) throws Exception
     {
         // Set the application icon.
-        stage.getIcons().add( ServiceManager.getApplicationService(
-                ApplicationInfo.class ).getIcon() );
+//        stage.getIcons().add( ServiceManager.getApplicationService(
+//                ApplicationInfo.class ).getIcon() );
 
         String resourceName =
                 String.format( "resources/%s.",
@@ -69,18 +67,18 @@ public class XsltLabUi extends Application
         Parent root =
                 FXMLLoader.load( is );
 
-        PropertyLink.persist2(
-                sceneWidth,
-                new NumberStringConverter() );
-        PropertyLink.persist2(
-                sceneHeight,
-                new NumberStringConverter() );
-        PropertyLink.persist2(
-                stageX,
-                new NumberStringConverter() );
-        PropertyLink.persist2(
-                stageY,
-                new NumberStringConverter() );
+//        PropertyLink.persist2(
+//                sceneWidth,
+//                new NumberStringConverter() );
+//        PropertyLink.persist2(
+//                sceneHeight,
+//                new NumberStringConverter() );
+//        PropertyLink.persist2(
+//                stageX,
+//                new NumberStringConverter() );
+//        PropertyLink.persist2(
+//                stageY,
+//                new NumberStringConverter() );
 
         if ( stageX.get() > 0 )
             stage.setX( stageX.get() );

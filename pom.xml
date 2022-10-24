@@ -55,8 +55,8 @@
   <dependencies>
     <dependency>
       <groupId>micbinz</groupId>
-      <artifactId>smack</artifactId>
-      <version>11.403</version>
+      <artifactId>smack_jfx</artifactId>
+      <version>11.3</version>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
