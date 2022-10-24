@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.michab.lab.tools.xslt.XsltLabUiController">
+   <center>
+      <SplitPane dividerPositions="0.33, 0.66">
+        <items>
+            <VBox>
+               <children>
+                  <Label text="XML to transform">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="_xmlParent" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label text="XSLT transformation">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="_xsltParent" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label text="Transformation result">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="_resultParent" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+        </items>
+      </SplitPane>
+   </center>
+   <top>
+      <ToolBar BorderPane.alignment="CENTER">
+        <items>
+          <Button fx:id="_buttonRefresh" mnemonicParsing="false" onAction="#handleButtonRefresh" text="Refresh" />
+        </items>
+      </ToolBar>
+   </top>
+   <bottom>
+      <Label fx:id="_statusMessage" maxWidth="1.7976931348623157E308" text="Message is so long" BorderPane.alignment="CENTER_LEFT" />
+   </bottom>
+</BorderPane>
