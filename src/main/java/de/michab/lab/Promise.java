@@ -1,5 +1,4 @@
 /*
- * $Id$
  * Released under Gnu Public License
  * Copyright © 2021 Michael G. Binz
  */
