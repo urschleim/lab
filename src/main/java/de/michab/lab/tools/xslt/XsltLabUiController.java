@@ -1,4 +1,4 @@
-/* $Id$
+/*
  *
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
