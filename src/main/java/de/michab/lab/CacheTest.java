@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Experimental.
  *
  * Released under Gnu Public License

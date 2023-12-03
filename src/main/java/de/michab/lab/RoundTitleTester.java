@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Laboratory.
  *
  * Released under Gnu Public License
@@ -28,7 +27,6 @@ import org.smack.util.TimeProbe;
 
 /**
  *
- * @version $Rev: 1992 $
  * @author Michael Binz
  */
 @SuppressWarnings("serial")

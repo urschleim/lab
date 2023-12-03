@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Experimental.
  *
  * Released under Gnu Public License
@@ -21,7 +20,6 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * A thread-save map with an attached entry factory.
  *
- * @version $Rev: 649 $
  * @author Michael Binz
  */
 public class Cache<K, V>
@@ -216,6 +214,7 @@ public class Cache<K, V>
         {
             Callable<V> c = new Callable<V>()
             {
+                @Override
                 public V call()
                 {
                     return _factory.create( key );

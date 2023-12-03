@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Common.
  *
  * Released under Gnu Public License

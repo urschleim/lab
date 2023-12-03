@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Laboratory.
  *
  * Released under Gnu Public License
