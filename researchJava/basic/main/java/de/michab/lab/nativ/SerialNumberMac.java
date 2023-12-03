@@ -1,4 +1,4 @@
-/* $Id$
+/* $Id: 44def9dc1b6887a2137a219642ff35c5638aad7c $
  *
  * Unpublished work.
  * Copyright © 2018 Michael G. Binz
@@ -15,7 +15,7 @@ import org.smack.util.StringUtil;
 /**
  * Detect the system serial number on a Mac.
  *
- * @version $Id: 29028e3724af8b273a36a7c8fa2403aded774519 $
+ * @version $Id: 44def9dc1b6887a2137a219642ff35c5638aad7c $
  * @author Michael Binz
  */
 public class SerialNumberMac implements SystemSerialNumber

@@ -16,7 +16,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Id$
+ * $Id: f65eba1b9ed4f297898c881715c2730b07a89fdb $
  */
 package org.jdesktop.swingx.wizard;
 
@@ -35,7 +35,7 @@ WizardStep
 {
    // Constants and variables
    // -------------------------------------------------------------------------
-   static final String _ID_ = "$Id: 9d47bed789cd985340b8bcd53396f4c468d6d8ae $";
+   static final String _ID_ = "$Id: f65eba1b9ed4f297898c881715c2730b07a89fdb $";
 
    /**
     * Gets the name of this step. This will be displayed in the title of the wizard while this
