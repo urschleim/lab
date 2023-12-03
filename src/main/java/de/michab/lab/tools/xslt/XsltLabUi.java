@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 /**
  * The MMT security administration application.
  *
- * @version $Rev: 2149 $
  * @author Michael Binz
  */
 public class XsltLabUi extends Application

@@ -16,7 +16,6 @@ import javafx.scene.text.Font;
 
 /**
  *
- * @version $Rev: 2152 $
  * @author Michael
  */
 public class FxLineNumberTextArea extends HBox

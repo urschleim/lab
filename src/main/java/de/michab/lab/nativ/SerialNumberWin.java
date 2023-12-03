@@ -15,7 +15,6 @@ import org.smack.util.StringUtil;
 /**
  * Create a unique computer id.
  *
- * @version $Rev: 2179 $
  * @author Michael Binz
  */
 public class SerialNumberWin implements SystemSerialNumber

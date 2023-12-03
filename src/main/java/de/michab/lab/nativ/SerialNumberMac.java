@@ -14,7 +14,6 @@ import org.smack.util.StringUtil;
 /**
  * Detect the system serial number on a Mac.
  *
- * @version $Id: 29028e3724af8b273a36a7c8fa2403aded774519 $
  * @author Michael Binz
  */
 public class SerialNumberMac implements SystemSerialNumber

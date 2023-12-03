@@ -26,7 +26,6 @@ import javafx.scene.layout.StackPane;
 /**
  * Controller.
  *
- * @version $Rev: 2163 $
  * @author Michael Binz
  */
 public class XsltLabUiController
