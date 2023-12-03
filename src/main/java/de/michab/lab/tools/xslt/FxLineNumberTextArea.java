@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
  */
@@ -17,7 +16,6 @@ import javafx.scene.text.Font;
 
 /**
  *
- * @version $Rev: 2152 $
  * @author Michael
  */
 public class FxLineNumberTextArea extends HBox

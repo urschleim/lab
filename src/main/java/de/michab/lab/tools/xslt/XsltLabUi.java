@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
  */
@@ -22,7 +21,6 @@ import javafx.stage.Stage;
 /**
  * The MMT security administration application.
  *
- * @version $Rev: 2149 $
  * @author Michael Binz
  */
 public class XsltLabUi extends Application

@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Unpublished work.
  * Copyright © 2018 Michael G. Binz
  */

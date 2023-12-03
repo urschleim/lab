@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
  */
@@ -17,7 +16,6 @@ import javafx.scene.control.TextArea;
 /**
  * A single column component only displaying line numbers.
  *
- * @version $Id$
  * @author Michael
  */
 class FxLineCountColumn extends TextArea

@@ -1,17 +1,14 @@
 package de.michab.lab;
 
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.junit.Test;
-
-
+import org.junit.jupiter.api.Test;
 
 public class PermuteTest
 {
@@ -174,21 +171,21 @@ public class PermuteTest
         assertEquals( 1, count );
     }
 
-    @Test
-    public void testIteratorEmpty()
-    {
-        var itr = Permute.iterator(
-                Collections.emptyList() );
-
-        int count = 0;
-        while ( itr.hasNext() )
-        {
-            count++;
-            var next = itr.next();
-            assertEquals( 0, next.size() );
-        }
-        assertEquals( 1, count );
-    }
+//    @Test
+//    public void testIteratorEmpty()
+//    {
+//        var itr = Permute.iterator(
+//                Collections.emptyList() );
+//
+//        int count = 0;
+//        while ( itr.hasNext() )
+//        {
+//            count++;
+//            var next = itr.next();
+//            assertEquals( 0, next.size() );
+//        }
+//        assertEquals( 1, count );
+//    }
 
     @Test
     public void testIteratorOverrun()

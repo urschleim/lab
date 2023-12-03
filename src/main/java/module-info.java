@@ -1,5 +1,5 @@
 /**
- * $Id$
+ * $Id: d50762c5ded066223f020e33f1cc4b4da2ebfddd $
  */
 module framework.laboratory {
     requires java.desktop;
@@ -29,5 +29,7 @@ module framework.laboratory {
     exports de.michab.lab.nativ
         to framework.smack;
     exports de.michab.lab
+        to framework.smack;
+    exports urschleim
         to framework.smack;
 }

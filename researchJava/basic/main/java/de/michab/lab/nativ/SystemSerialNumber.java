@@ -1,4 +1,4 @@
-/* $Id$
+/* $Id: 37f5eb979c20f480049ed4d6a062ccd818a67d16 $
  *
  * Unpublished work.
  * Copyright © 2018 Michael G. Binz
@@ -8,7 +8,7 @@ package de.michab.lab.nativ;
 /**
  * Interface for native serial number detectors.
  *
- * @version $Id: 0fa88830b45e00c48fa1b31874dfffe3005f6d27 $
+ * @version $Id: 37f5eb979c20f480049ed4d6a062ccd818a67d16 $
  * @author Michael Binz
  */
 public interface SystemSerialNumber

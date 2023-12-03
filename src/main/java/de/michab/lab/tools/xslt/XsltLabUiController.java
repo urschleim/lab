@@ -1,4 +1,4 @@
-/* $Id$
+/*
  *
  * Unpublished work.
  * Copyright © 2019 Michael G. Binz
@@ -26,7 +26,6 @@ import javafx.scene.layout.StackPane;
 /**
  * Controller.
  *
- * @version $Rev: 2163 $
  * @author Michael Binz
  */
 public class XsltLabUiController
