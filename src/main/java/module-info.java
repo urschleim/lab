@@ -1,5 +1,4 @@
 /**
- * $Id: d50762c5ded066223f020e33f1cc4b4da2ebfddd $
  */
 module framework.laboratory {
     requires java.desktop;
