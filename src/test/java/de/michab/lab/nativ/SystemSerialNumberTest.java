@@ -11,7 +11,7 @@ public class SystemSerialNumberTest
 {
 
     @Test
-    public void lumumbaTest() throws Exception
+    public void SystemSerialNumberTestTest() throws Exception
     {
         var ssn =
                 PlatformType.load( SystemSerialNumber.class );
